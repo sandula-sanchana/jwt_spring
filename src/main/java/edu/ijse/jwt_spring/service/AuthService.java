@@ -1,10 +1,13 @@
 package edu.ijse.jwt_spring.service;
 
+import edu.ijse.jwt_spring.dto.AuthDTO;
+import edu.ijse.jwt_spring.dto.AuthResponseDTO;
 import edu.ijse.jwt_spring.dto.RegisterDTO;
 import edu.ijse.jwt_spring.entity.Role;
 import edu.ijse.jwt_spring.entity.User;
 import edu.ijse.jwt_spring.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,18 @@ public class AuthService {
         userRepo.save(user);
 
         return "user "+user.getUsername() + " saved successfully";
+
+    }
+
+    public AuthResponseDTO autheticate(AuthDTO authDTO){
+
+        User user=userRepo.findByUsername(authDTO.getUsername());
+
+        if(!passwordEncoder.matches(authDTO.getPassword(),user.getPassword())){
+            throw new BadCredentialsException("incorrect username or password");
+        }
+
+
 
     }
 }
