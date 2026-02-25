@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+
+    <style>
+        body{
+            background: linear-gradient(120deg,#1f4037,#99f2c8);
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .card{
+            border-radius:20px;
+            box-shadow:0 20px 40px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+<div class="card p-4" style="width:400px;">
+    <h3 class="text-center mb-4">Sign In</h3>
+
+    <form id="loginForm">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="username" placeholder="Username" required>
+        </div>
+
+        <div class="mb-3">
+            <input type="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+
+        <button type="submit" class="btn btn-dark w-100">Login</button>
+    </form>
+
+    <p class="text-center mt-3">
+        Don’t have an account? <a href="signup.html">Sign up</a>
+    </p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<script>
+    $("#loginForm").submit(function(e){
+        e.preventDefault();
+
+        $.ajax({
+            url: "http://localhost:8080/api/v1/auth/login",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                username: $("#username").val(),
+                password: $("#password").val()
+            }),
+            success: function(response){
+                localStorage.setItem("token", response.token);
+                alert("Login successful!");
+                window.location.href = "../dashboard.html";
+            },
+            error: function(){
+                alert("Invalid credentials");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
