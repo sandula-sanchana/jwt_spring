@@ -1,6 +1,6 @@
 package edu.ijse.jwt_spring.exception;
 
-import edu.ijse.security.util.APIResponse;
+import edu.ijse.jwt_spring.util.APIResponse;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
