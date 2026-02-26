@@ -19,9 +19,10 @@ public class JwtUtil {
 
 
     public String generateToken(String name){
-
-        return Jwts.builder().setSubject(name).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis()+expiration))
-                .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()),SignatureAlgorithm.HS256).compact();
+    String token = Jwts.builder().setSubject(name).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis()+expiration))
+            .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()),SignatureAlgorithm.HS256).compact();
+    System.out.println(token);
+        return token;
     }
 
     public boolean validateToken(String token){

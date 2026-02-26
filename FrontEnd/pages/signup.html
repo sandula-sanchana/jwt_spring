@@ -2,28 +2,101 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Create Account</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         body{
-            background: linear-gradient(135deg,#667eea,#764ba2);
+            background: #0f172a;
             min-height:100vh;
             display:flex;
             align-items:center;
             justify-content:center;
+            font-family: 'Segoe UI', sans-serif;
         }
-        .card{
-            border-radius:20px;
-            box-shadow:0 20px 40px rgba(0,0,0,0.3);
+
+        .register-wrapper{
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 40px;
+            width: 420px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .register-title{
+            text-align:center;
+            color:#ffffff;
+            font-weight:600;
+            margin-bottom:30px;
+            letter-spacing:1px;
+        }
+
+        .form-control, .form-select{
+            background: transparent;
+            border:1px solid rgba(255,255,255,0.2);
+            color:#fff;
+            border-radius:12px;
+            padding:12px;
+        }
+
+        .form-control:focus, .form-select:focus{
+            background: transparent;
+            border-color:#38bdf8;
+            box-shadow: 0 0 10px rgba(56,189,248,0.5);
+            color:#fff;
+        }
+
+        .form-control::placeholder{
+            color: rgba(255,255,255,0.5);
+        }
+
+        .form-select option{
+            background:#0f172a;
+            color:#fff;
+        }
+
+        .btn-register{
+            background: linear-gradient(90deg,#38bdf8,#6366f1);
+            border:none;
+            border-radius:12px;
+            padding:12px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .btn-register:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99,102,241,0.4);
+        }
+
+        .signin-text{
+            color: rgba(255,255,255,0.7);
+        }
+
+        .signin-text a{
+            color:#38bdf8;
+            text-decoration:none;
+            font-weight:500;
+        }
+
+        .signin-text a:hover{
+            text-decoration:underline;
+        }
+
+        @keyframes fadeIn{
+            from{ opacity:0; transform:translateY(20px); }
+            to{ opacity:1; transform:translateY(0); }
         }
     </style>
 </head>
 <body>
 
-<div class="card p-4" style="width:400px;">
-    <h3 class="text-center mb-4">Create Account</h3>
+<div class="register-wrapper">
+    <h3 class="register-title">Create Account</h3>
 
     <form id="registerForm">
         <div class="mb-3">
@@ -41,16 +114,16 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary w-100">Register</button>
+        <button type="submit" class="btn btn-register w-100">Register</button>
     </form>
 
-    <p class="text-center mt-3">
+    <p class="text-center mt-4 signin-text">
         Already have an account? <a href="signin.html">Sign in</a>
     </p>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     $("#registerForm").submit(function(e){
